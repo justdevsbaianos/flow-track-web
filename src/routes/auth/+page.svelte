@@ -1,17 +1,25 @@
 <script lang="ts">
-	import Button from '$lib/components/button.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import FetcherStateMessage from '$lib/components/FetcherStateMessage.svelte';
+	import Input from '$lib/components/Input.svelte';
+	import Label from '$lib/components/Label.svelte';
+	import { fetchLogin, fetchRegister } from '$lib/services/fetch-auth';
+	import { FetchState } from '$lib/utils/fetch-result.svelte';
 
 	let activeTab = $state('login');
 	let email = $state('');
 	let password = $state('');
 	let confirmPassword = $state('');
-	let username = $state('');
 
-	const handleSubmit = () => {
+	let result = new FetchState<{ message: string }>();
+
+	const handleSubmit = async (e: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement }) => {
+		e.preventDefault();
+
 		if (activeTab === 'login') {
-			console.log('Login:', { email, password });
+			result.wrap(fetchLogin({ email, password }));
 		} else {
-			console.log('Register:', { username, email, password });
+			result.wrap(fetchRegister({ email, password }));
 		}
 	};
 </script>
@@ -42,71 +50,22 @@
 			</div>
 
 			<form onsubmit={handleSubmit} class="text-foreground flex flex-col space-y-6 p-6">
-				{#if activeTab === 'register'}
-					<div class="space-y-2">
-						<label
-							for="username"
-							class="text-card-foreground block font-mono text-xs tracking-wider uppercase"
-						>
-							Username
-						</label>
-						<input
-							id="username"
-							type="text"
-							bind:value={username}
-							class="bg-background border-border focus:ring-ring w-full rounded border px-3 py-2 text-sm focus:border-transparent focus:ring-1 focus:outline-none"
-							required
-						/>
-					</div>
-				{/if}
+				<FetcherStateMessage state={result.wrapper} />
 
 				<div class="space-y-2">
-					<label
-						for="email"
-						class="text-card-foreground block font-mono text-xs tracking-wider uppercase"
-					>
-						Email
-					</label>
-					<input
-						id="email"
-						type="email"
-						bind:value={email}
-						class="bg-background border-border focus:ring-ring w-full rounded border px-3 py-2 text-sm focus:border-transparent focus:ring-1 focus:outline-none"
-						required
-					/>
+					<Label for="email">Email</Label>
+					<Input id="email" type="email" bind:value={email} required />
 				</div>
 
 				<div class="space-y-2">
-					<label
-						for="password"
-						class="text-card-foreground block font-mono text-xs tracking-wider uppercase"
-					>
-						Password
-					</label>
-					<input
-						name="password"
-						type="password"
-						bind:value={password}
-						class="bg-background border-border focus:ring-ring w-full rounded border px-3 py-2 text-sm focus:border-transparent focus:ring-1 focus:outline-none"
-						required
-					/>
+					<Label for="password">Password</Label>
+					<Input name="password" type="password" bind:value={password} required />
 				</div>
 
 				{#if activeTab === 'register'}
 					<div class="space-y-2">
-						<label
-							for="confirm-password"
-							class="text-card-foreground block font-mono text-xs tracking-wider uppercase"
-						>
-							Confirm Password
-						</label>
-						<input
-							id="confirm-password"
-							type="password"
-							bind:value={confirmPassword}
-							class="bg-background border-border focus:ring-ring w-full rounded border px-3 py-2 text-sm focus:border-transparent focus:ring-1 focus:outline-none"
-							required
-						/>
+						<Label for="confirm-password">Confirm Password</Label>
+						<Input id="confirm-password" type="password" bind:value={confirmPassword} required />
 					</div>
 				{/if}
 
