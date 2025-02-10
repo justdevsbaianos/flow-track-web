@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-background: oklch(18.67% 0 0);
+	--color-foreground: oklch(0.98 0 0);
+	--color-card: oklch(30.92% 0 0);
+	--color-card-foreground: oklch(0.98 0 0);
+	--color-popover: oklch(0.07 0 0);
+	--color-popover-foreground: oklch(0.98 0 0);
+	--color-primary: oklch(0.98 0 0);
+	--color-primary-foreground: oklch(0.13 0 0);
+	--color-secondary: oklch(0.23 0 0);
+	--color-secondary-foreground: oklch(0.98 0 0);
+	--color-muted: oklch(0.23 0 0);
+	--color-muted-foreground: oklch(0.64 0 0);
+	--color-accent: oklch(0.23 0 0);
+	--color-accent-foreground: oklch(0.98 0 0);
+	--color-destructive: oklch(0.48 0.15 29.234);
+	--color-destructive-foreground: oklch(0.98 0 0);
+	--color-border: oklch(0.23 0 0);
+	--color-input: oklch(0.23 0 0);
+	--color-ring: oklch(0.83 0 0);
+	--color-chart-1: oklch(0.65 0.2 264.015);
+	--color-chart-2: oklch(0.7 0.15 159.624);
+	--color-chart-3: oklch(0.75 0.18 80.855);
+	--color-chart-4: oklch(0.63 0.22 307.692);
+	--color-chart-5: oklch(0.68 0.25 11.875);
+}
+
+@base {
+	:root {
+		--header-height: 30px;
+		--view-height: calc(100dvg - var(--header-height));
+	}
+}
+
+body {
+	background: var(--color-background);
+	color: var(--color-foreground);
+	min-height: 100dvh;
+	max-width: 100dvw;
+	overflow-x: hidden;
+	font-feature-settings:
+		'ss02' on,
+		'ss03' on;
+}
+
+* {
+	border-color: var(--color-border);
+}
