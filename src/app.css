@@ -25,13 +25,14 @@
 	--color-chart-3: oklch(0.75 0.18 80.855);
 	--color-chart-4: oklch(0.63 0.22 307.692);
 	--color-chart-5: oklch(0.68 0.25 11.875);
+
+	--color-clock-in: oklch(0.7 0.15 159.624);
+	--color-clock-out: oklch(0.58 0.18 32.234);
 }
 
-@base {
-	:root {
-		--header-height: 30px;
-		--view-height: calc(100dvg - var(--header-height));
-	}
+:root {
+	--header-height: 3rem;
+	--view-height: calc(100dvg - var(--header-height));
 }
 
 body {

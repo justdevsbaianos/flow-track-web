@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import ClockHistory from '$lib/components/ClockHistory.svelte';
+	import ClockInOutButton from '$lib/components/ClockInOutButton.svelte';
+</script>
+
+<main class="container mx-auto">
+	<ClockInOutButton />
+
+	<hr class="my-8" />
+
+	<ClockHistory />
+</main>

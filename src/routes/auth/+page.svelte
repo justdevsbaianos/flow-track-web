@@ -4,7 +4,7 @@
 	import Input from '$lib/components/Input.svelte';
 	import Label from '$lib/components/Label.svelte';
 	import { fetchLogin, fetchRegister } from '$lib/services/fetch-auth';
-	import { FetchState } from '$lib/utils/fetch-result.svelte';
+	import { FetchState } from '$lib/stores/fetch-result.svelte';
 
 	let activeTab = $state('login');
 	let email = $state('');

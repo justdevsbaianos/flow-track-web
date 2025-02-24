@@ -1,4 +1,4 @@
-import type { FetchResult } from "./fetch-result.svelte";
+import type { FetchResult } from "../stores/fetch-result.svelte";
 
 export type Ok<T> = {
   readonly status: 'ok';

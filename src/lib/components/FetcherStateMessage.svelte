@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { isIdle, type FetchResult } from '$lib/utils/fetch-result.svelte';
+	import { isIdle, type FetchResult } from '$lib/stores/fetch-result.svelte';
 	import { isFail, isOk } from '$lib/utils/result';
+	import LoadingSlash from './LoadingSlash.svelte';
 
 	type Props = {
 		class?: string;
@@ -26,7 +27,7 @@
 		{:else if isFail(st)}
 			{st.message}
 		{:else}
-			Carregando...
+			<LoadingSlash /> Carregando...
 		{/if}
 	</p>
 {/if}

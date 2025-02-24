@@ -1,17 +1,17 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	type Props = {
 		shortcut?: string;
 		children: Snippet;
-		type?: 'submit' | 'button' | 'reset';
-		class?: string;
-	};
+	} & HTMLButtonAttributes;
 
-	let { shortcut, children, type = 'button', class: className }: Props = $props();
+	let { shortcut, children, type = 'button', class: className, ...rest }: Props = $props();
 </script>
 
 <button
+	{...rest}
 	{type}
 	class={[
 		'group bg-card text-card-foreground border-background relative w-fit cursor-pointer rounded-lg border px-6 py-2.5 text-center transition-transform select-none active:scale-[0.98]',

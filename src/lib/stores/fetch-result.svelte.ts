@@ -1,4 +1,4 @@
-import { fail, ok, type Fail, type Ok } from "./result";
+import { fail, ok, type Fail, type Ok } from "../utils/result";
 
 export type Idle = {
   readonly status: 'idle';

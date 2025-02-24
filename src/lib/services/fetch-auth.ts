@@ -10,6 +10,7 @@ export async function fetchLogin(params: LoginRequest) {
   // const json = await jsonFetch('/auth/login', { json: params })
   // return json
   console.log(params)
+  await yolo.delay(1000)
   return yolo.fetch(() => ({
     message: faker.lorem.lines(1),
   }))
