@@ -7,6 +7,8 @@
 	let s = $derived(time.split(''));
 </script>
 
-{#each s as digit}
-	<FlipClockCard {digit} />
-{/each}
+<div class="flex items-center justify-end">
+	{#each s as digit}
+		<FlipClockCard {digit} />
+	{/each}
+</div>

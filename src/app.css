@@ -49,3 +49,21 @@ body {
 * {
 	border-color: var(--color-border);
 }
+
+@layer utilities {
+	.scrollbar::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.scrollbar::-webkit-scrollbar-track {
+		@apply bg-card rounded-full;
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb {
+		@apply bg-popover border-card rounded-full border-2 border-solid;
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb:hover {
+		@apply bg-popover;
+	}
+}

@@ -13,26 +13,34 @@
 		} else {
 			state = 'delete-it';
 		}
+
+		setTimeout(() => {
+			state = 'idle';
+		}, 2000);
 	};
 </script>
 
-<div>
-	<Button
-		type="button"
-		shortcut={state === 'delete-it' ? 'yes' : ''}
-		onclick={() => clearHistory()}
-		class="text-muted-foreground"
-	>
-		{#if state === 'delete-it'}
-			Are you sure?
-		{:else if state === 'done'}
-			Done!
-		{:else}
-			Clear history
-		{/if}
-	</Button>
+{#if globalTimer.workTimestamps.length > 0}
+	<div>
+		<Button
+			type="button"
+			shortcut={state === 'delete-it' ? 'yes' : ''}
+			onclick={() => clearHistory()}
+			class="text-muted-foreground"
+		>
+			{#if state === 'delete-it'}
+				Are you sure?
+			{:else if state === 'done'}
+				Done!
+			{:else}
+				Clear history
+			{/if}
+		</Button>
 
-	{#if state === 'delete-it'}
-		<Button type="button" onclick={() => (state = 'cancel')} class="text-destructive">Cancel</Button>
-	{/if}
-</div>
+		{#if state === 'delete-it'}
+			<Button type="button" onclick={() => (state = 'cancel')} class="text-destructive">Cancel</Button>
+		{/if}
+	</div>
+{:else}
+	<p class="text-muted-foreground">No history to clear</p>
+{/if}

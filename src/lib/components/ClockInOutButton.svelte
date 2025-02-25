@@ -26,19 +26,13 @@
 	};
 </script>
 
-<section>
-	<div class="flex items-center justify-between">
+<section class="w-full">
+	<div class="flex w-full items-center justify-between">
 		<h2 class="font-mono text-xl font-semibold">Time registration</h2>
 
-		{#if globalTimer.lastWorkTimestamp?.type === 'in'}
-			<p class="text-clock-in">
-				<FlipClock time={formatTime(timer)} />
-			</p>
-		{:else}
-			<p class="text-clock-out">
-				<FlipClock time={formatTime(timer)} />
-			</p>
-		{/if}
+		<p class={[globalTimer.lastWorkTimestamp?.type === 'in' ? 'text-clock-in' : 'text-clock-out', 'ml-auto']}>
+			<FlipClock time={formatTime(timer)} />
+		</p>
 	</div>
 
 	<div class="mt-4">

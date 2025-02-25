@@ -1,10 +1,12 @@
-import { createLocalStorageKey } from "$lib/utils/create-key"
-import { getContext, setContext } from "svelte"
-import { LocalStore } from "./local-store.svelte"
+import { createLocalStorageKey } from "$lib/utils/create-key";
+import { differenceInSeconds } from 'date-fns';
+import { getContext, setContext } from "svelte";
+import { LocalStore } from "./local-store.svelte";
 
 type WorkTimestamp = {
   type: 'in' | 'out'
   timestamp: number
+  elapsed?: number
 }
 
 export class TimerStorageState {
@@ -16,11 +18,20 @@ export class TimerStorageState {
   }
 
   get lastWorkTimestamp() {
-    return this._ls.value.at(-1)
+    return this._ls.value.at(0)
   }
 
   addWorkTimestamp(type: 'in' | 'out') {
-    this._ls.value.push({ type, timestamp: Date.now() })
+    const timestamp = Date.now()
+    const prev = this.lastWorkTimestamp?.timestamp ?? 0
+
+    const data: WorkTimestamp = {
+      type,
+      timestamp,
+      elapsed: prev ? differenceInSeconds(timestamp, prev) : undefined
+    }
+
+    this._ls.value.unshift(data)
   }
 
   toggle() {
