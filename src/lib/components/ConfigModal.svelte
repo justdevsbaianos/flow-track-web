@@ -119,7 +119,7 @@
 		</main>
 
 		<footer class="flex justify-end gap-4 p-4">
-			<Button autofocus type="button" value="cancel" onclick={closeDialog}>Cancel</Button>
+			<Button variant="destructive" autofocus type="button" value="cancel" onclick={closeDialog}>Cancel</Button>
 			<Button type="submit" value="confirm">Save</Button>
 		</footer>
 	</form>

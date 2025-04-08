@@ -5,7 +5,7 @@
 	type Props = {
 		shortcut?: string;
 		children: Snippet;
-		variant?: 'default' | 'success' | 'error' | 'loading';
+		variant?: 'default' | 'success' | 'destructive' | 'loading';
 	} & HTMLButtonAttributes;
 
 	let { shortcut, children, type = 'button', variant = 'default', class: className, ...rest }: Props = $props();
@@ -13,7 +13,7 @@
 	const variantClasses = {
 		default: 'bg-card text-card-foreground hover:bg-accent',
 		success: 'bg-clock-in text-background hover:bg-clock-in/90',
-		error: 'bg-clock-out text-background hover:bg-clock-out/90',
+		destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
 		loading: 'bg-accent text-accent-foreground cursor-wait'
 	};
 </script>
