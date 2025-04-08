@@ -1,13 +1,17 @@
 <script lang="ts">
 	import clockImage from '$lib/assets/download.png';
+	import ConfigModal from '$lib/components/ConfigModal.svelte';
+	import { ConfigStorageState, setConfigStorageState } from '$lib/stores/config-storage-state.svelte';
 	import { setTimerStorageState, TimerStorageState } from '$lib/stores/timer-storage-state.svelte';
 	import '../app.css';
 
 	let { children } = $props();
 
 	let globalTimerStorageState = new TimerStorageState();
+	let globalConfigStorageState = new ConfigStorageState();
 
 	setTimerStorageState(globalTimerStorageState);
+	setConfigStorageState(globalConfigStorageState);
 </script>
 
 <img
@@ -23,11 +27,16 @@
 >
 	<h1>Dashboard</h1>
 
-	<button
-		class="border-background bg-card text-muted-foreground rounded border px-1.5 py-0.5 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-	>
-		Configuration
-	</button>
+	<ConfigModal>
+		{#snippet trigger({ onclick })}
+			<button
+				{onclick}
+				class="border-background bg-card text-muted-foreground rounded border px-1.5 py-0.5 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+			>
+				Configuration
+			</button>
+		{/snippet}
+	</ConfigModal>
 </header>
 
 {@render children()}

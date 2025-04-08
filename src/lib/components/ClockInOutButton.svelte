@@ -2,6 +2,7 @@
 	import { getTimerStorageState } from '$lib/stores/timer-storage-state.svelte';
 	import Button from './Button.svelte';
 	import FlipClock from './FlipClock.svelte';
+	import PausedText from './PausedText.svelte';
 
 	let timer = $state(0);
 
@@ -9,9 +10,13 @@
 
 	$effect(() => {
 		const intervalId = setInterval(() => {
-			const now = Date.now();
-			const timestamp = globalTimer.lastWorkTimestamp?.timestamp ?? now;
-			timer = now - timestamp;
+			if (globalTimer.lastWorkTimestamp?.type === 'in') {
+				const now = Date.now();
+				const timestamp = globalTimer.lastWorkTimestamp.timestamp;
+				timer = now - timestamp;
+			} else {
+				timer = 0;
+			}
 		}, 1000);
 
 		return () => clearInterval(intervalId);
@@ -31,7 +36,11 @@
 		<h2 class="font-mono text-xl font-semibold">Time registration</h2>
 
 		<p class={[globalTimer.lastWorkTimestamp?.type === 'in' ? 'text-clock-in' : 'text-clock-out', 'ml-auto']}>
-			<FlipClock time={formatTime(timer)} />
+			{#if globalTimer.lastWorkTimestamp?.type === 'in'}
+				<FlipClock time={formatTime(timer)} />
+			{:else}
+				<PausedText />
+			{/if}
 		</p>
 	</div>
 

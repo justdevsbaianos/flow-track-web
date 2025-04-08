@@ -4,6 +4,7 @@
 	--color-background: oklch(18.67% 0 0);
 	--color-foreground: oklch(0.98 0 0);
 	--color-card: oklch(30.92% 0 0);
+	--color-card-dark: oklch(25.92% 0 0);
 	--color-card-foreground: oklch(0.98 0 0);
 	--color-popover: oklch(0.07 0 0);
 	--color-popover-foreground: oklch(0.98 0 0);
@@ -28,6 +29,8 @@
 
 	--color-clock-in: oklch(0.7 0.15 159.624);
 	--color-clock-out: oklch(0.58 0.18 32.234);
+
+	--shadow-dialog: 0 0 0 1px oklch(0.23 0 0), 0 10px 20px -5px oklch(0.23 0 0);
 }
 
 :root {
